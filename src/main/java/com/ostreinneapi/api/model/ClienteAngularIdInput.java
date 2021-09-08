@@ -2,7 +2,7 @@ package com.ostreinneapi.api.model;
 
 import javax.validation.constraints.NotNull;
 
-public class ClienteIdInput {
+public class ClienteAngularIdInput {
 
 	@NotNull
 	private Long id;

@@ -1,16 +1,17 @@
 package com.ostreinneapi.domian.model;
 
-import javax.persistence.Column;
+import java.time.OffsetDateTime;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Cliente {
+public class ClienteAngular {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +22,10 @@ public class Cliente {
 	private String nome;	
 	
 	@NotBlank
-	@Email	
-	@Size(max = 255)
-	private String email;	
+	@Size(max = 11)
+	private String cpf;	
 	
-	@NotBlank
-	@Size(max = 20)
-	@Column(name="fone")
-	private String telefone;
+	private OffsetDateTime dataCadastro;
 
 	public Long getId() {
 		return id;
@@ -46,20 +43,20 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public String getEmail() {
-		return email;
+	public OffsetDateTime getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDataCadastro(OffsetDateTime dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	@Override
@@ -78,7 +75,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		ClienteAngular other = (ClienteAngular) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
