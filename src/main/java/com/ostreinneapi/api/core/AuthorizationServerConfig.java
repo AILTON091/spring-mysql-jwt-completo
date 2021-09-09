@@ -20,8 +20,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	//@Value("${security.jwt.signing-key}")
-	//private String signingKey;
+	@Value("${security.jwt.signing-key}")
+	private String signingKey;
 	
 	
 	/* AQUI ERA PARA USAR OUTRA AUTENTICAÇÃO, DOS DADOS EM MEMORIA E A BAIXO FOI UTILIZADA AUTENTICAÇÃO COM JWT
@@ -50,7 +50,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Bean 
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-		//tokenConverter.setSigningKey(signingKey);
+		tokenConverter.setSigningKey(signingKey);
 		return tokenConverter;
 	}
 	
