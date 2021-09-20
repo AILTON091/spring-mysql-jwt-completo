@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.ostreinneapi.domian.exceprion.NegocioException;
 import com.ostreinneapi.domian.model.UsuarioAngular;
 import com.ostreinneapi.domian.repository.UsuarioAngularRepository;
 
@@ -15,6 +16,16 @@ public class UsuarioService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioAngularRepository usuarioAngularRepository;
+	
+	
+	public UsuarioAngular salvar (UsuarioAngular user) {
+		boolean exists = usuarioAngularRepository.existsByUsername(user.getUsername());
+		if (exists) {
+			throw new NegocioException("Usuário "+ user.getUsername()+"já cadastrado ");
+		}
+		
+		return usuarioAngularRepository.save(user);		
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

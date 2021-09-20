@@ -62,12 +62,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		     	.authenticationManager(authenticationManager);
 	}
 	
+	//configurações necessárias para validar o token
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients
 				.inMemory()
-				.withClient("app-angular")
-				.secret("@456")
+				.withClient("app-angular") //clientId 
+				.secret("@456")  // clientSecret 
 				.scopes("read", "write")
 				.authorizedGrantTypes("password")
 				.accessTokenValiditySeconds(1800);

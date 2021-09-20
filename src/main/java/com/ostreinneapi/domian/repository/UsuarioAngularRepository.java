@@ -10,4 +10,6 @@ import com.ostreinneapi.domian.model.UsuarioAngular;
 @Repository
 public interface UsuarioAngularRepository extends JpaRepository<UsuarioAngular, Long> {
 	Optional<UsuarioAngular> findByUsername(String username);
+
+	boolean existsByUsername(String username);
 }

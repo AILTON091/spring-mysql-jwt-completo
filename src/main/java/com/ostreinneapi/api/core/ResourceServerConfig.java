@@ -9,12 +9,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+	//configuração dos locais de acessos 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
 		  .authorizeRequests()
-		  		.antMatchers("/api/usuarios").permitAll()
-		  		.antMatchers("/clientes-angular").authenticated()
+		  		.antMatchers("/api/usuarios").permitAll() // permite o cadastro sem precisar do token
+		  		.antMatchers("/clientes-angular").authenticated() // precisa do token para fazer o login
+		  		.antMatchers("/clientes-angular/*").authenticated() 
 		  		.anyRequest().denyAll();
 	}
 }

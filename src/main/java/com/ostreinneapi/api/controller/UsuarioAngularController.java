@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ostreinneapi.domian.model.UsuarioAngular;
-import com.ostreinneapi.domian.repository.UsuarioAngularRepository;
+import com.ostreinneapi.domian.service.UsuarioService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -20,12 +20,12 @@ import com.ostreinneapi.domian.repository.UsuarioAngularRepository;
 public class UsuarioAngularController {
 
 	@Autowired
-	private UsuarioAngularRepository repository;
+	private UsuarioService usuarioService;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public void salvar(@Valid @RequestBody UsuarioAngular usuario) {
-		repository.save(usuario);
+		this.usuarioService.salvar(usuario);
 	}
 	
 }
